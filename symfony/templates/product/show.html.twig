@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+{% block javascripts %} 
+    <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const id = document.querySelector("h1").getAttribute("data-id");
+        const addButton = document.querySelector("#addCart");
+
+        addButton.addEventListener("click", () => {
+            const url = `/cart/add/${id}`;
+            fetch(url)
+                .then(res => {
+                    if(res.status == "200"){
+                        addButton.disabled = true;
+                        alert("Le produit a bien été ajouté au panier !");
+                    }
+                    
+                });
+        });
+    });
+    </script>
+{% endblock %}
+{% block body %}
+
+    <h1 data-id="{{ product.id }}">{{ product.name }}</h1>
+    <h2> {{product.price}} €</h2>
+    <p> {{product.description}} </p>
+
+    <p> Crée le {{ product.createdAt |date('d-m-Y')}} </p>
+    <a href=".">Retour</a>
+    <div>
+    {% if disabledBtn == true %}
+        <button id="addCart" disabled>Ajouter au panier</button>
+    {% else %}
+        <button id="addCart" >Ajouter au panier</button>  
+    {% endif %}
+        
+    </div>
+{% endblock %}

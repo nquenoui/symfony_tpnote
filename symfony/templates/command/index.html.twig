@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommandController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table class="user">
+            <thead>
+                <tr>
+                    <th>N° de commande</th>
+                    <th>Adresse Mail</th>
+                    <th>°</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for command in commands %}
+                <tr class="card-user">
+                    <td>{{ command.id }}</td>
+                    <td>{{ command.email }}</td>
+                    <td><a href="./command/{{ command.id}}">Voir la commande</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table class="user">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Description</th>
+                    <th>Crée le</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr class="card-user">
+                    <td><a href="./product/{{ product.id}}">{{ product.name}}</a></td>
+                    <td>{{ product.price}} €</td>
+                    <td>
+                    {% if product.description | length > 300 %}
+                        {{product.description | slice(0, 300) }}
+                        <a href="./product/{{ product.id}}">... voir plus</a>
+                    {% else %}
+                        {{product.description}}
+                    {% endif %}
+                    </td>
+                    <td>{{ product.createdAt |date('d-m-Y')}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ '/app/src/Controller/ProductController.php'|file_link(0) }}">src/Controller/ProductController.php</a></code></li>
+        <li>Your template at <code><a href="{{ '/app/templates/product/index.html.twig'|file_link(0) }}">templates/product/index.html.twig</a></code></li>
+    </ul>
+</div>
+{% endblock %}

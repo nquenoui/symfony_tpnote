@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<h1>Les produits les plus récents</h1>
+    <table class="user">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Description</th>
+                    <th>Crée le</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for product in MostRecentProducts %}
+                <tr class="card-user">
+                    <td><a href="./product/{{ product.id}}">{{ product.name}}</a></td>
+                    <td>{{ product.price}} €</td>
+                    <td>
+                    {% if product.description | length > 300 %}
+                        {{product.description | slice(0, 300) }}
+                        <a href="./product/{{ product.id}}">... voir plus</a>
+                    {% else %}
+                        {{product.description}}
+                    {% endif %}
+                    </td>
+                    <td>{{ product.createdAt |date('d-m-Y')}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+    
+    <h1>Les articles les moins chères</h1>
+    <table class="user">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Description</th>
+                    <th>Crée le</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for product in LessPriceProducts %}
+                <tr class="card-user">
+                    <td><a href="./product/{{ product.id}}">{{ product.name}}</a></td>
+                    <td>{{ product.price}} €</td>
+                    <td>
+                    {% if product.description | length > 300 %}
+                        {{product.description | slice(0, 300) }}
+                        <a href="./product/{{ product.id}}">... voir plus</a>
+                    {% else %}
+                        {{product.description}}
+                    {% endif %}
+                    </td>
+                    <td>{{ product.createdAt |date('d-m-Y')}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<div class="example-wrapper">
+    <h1>Panier</h1>
+    {% if products|length > 0 %}
+        <table class="user">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                    <tr class="card-user">
+                        <td><a type="button" href="{{ path('cart.delete', {'id': product.id }) }}">X</a> <a href="./product/{{ product.id}}">{{ product.name}}</a></td>
+                        <td>{{ product.price}} €</td>
+                        <td>{{ product.qty}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+        <h4>Prix total : {{ totalPrice}} €</h4>
+
+        {{ form_start(commandForm) }}
+        {{ form_row(commandForm.email) }}
+        <button type="submit" class="btn btn-primary btn-block">
+            Créer la commande
+        </button>
+    {{ form_end(commandForm) }}
+    {% else %}
+        <h4>Votre panier est vide</h4>
+        
+    {% endif %}
+</div>
+{% endblock %}
