@@ -7,13 +7,14 @@
 {% block body %}
 
     <h1 data-id="{{ command.id }}">Commande #{{ command.id }}</h1>
-    <h2>Email : {{command.email}} </h2>
+    <h4><b>Liste des produits commandés</b></h4>
 
-    <table class="user">
+    <table class="table">
             <thead>
                 <tr>
                     <th>N° d'article</th>
                     <th>Nom</th>
+                    <th>Quantité</th>
                     <th>Prix</th>
                 </tr>
             </thead>
@@ -22,13 +23,14 @@
                 <tr class="card-user">
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
+                    <td>1</td>
                     <td>{{ product.price }} €</td>
                 </tr>
             {% endfor %}
             </tbody>
     </table>
-
-    <h4>Prix total : {{ totalPrice}} €</h4>
+    <h4><b>Email :</b> {{command.email}} </h4>
+    <h4><b>Prix total :</b> {{ totalPrice}} €</h4>
         
     </div>
 {% endblock %}

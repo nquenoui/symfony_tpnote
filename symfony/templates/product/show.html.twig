@@ -6,6 +6,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         const id = document.querySelector("h1").getAttribute("data-id");
         const addButton = document.querySelector("#addCart");
+        const returnButton = document.querySelector("#returnButton");
 
         addButton.addEventListener("click", () => {
             const url = `/cart/add/${id}`;
@@ -18,22 +19,27 @@
                     
                 });
         });
+
+        returnButton.addEventListener("click", () => {
+            location.replace('.');
+        });
     });
     </script>
 {% endblock %}
 {% block body %}
+    <button id="returnButton" class="btn btn-dark" >🠜 Retour</button>  
 
     <h1 data-id="{{ product.id }}">{{ product.name }}</h1>
     <h2> {{product.price}} €</h2>
     <p> {{product.description}} </p>
 
     <p> Crée le {{ product.createdAt |date('d-m-Y')}} </p>
-    <a href=".">Retour</a>
+    
     <div>
     {% if disabledBtn == true %}
-        <button id="addCart" disabled>Ajouter au panier</button>
+        <button id="addCart" class="btn btn-primary" disabled>Ajouter au panier</button>
     {% else %}
-        <button id="addCart" >Ajouter au panier</button>  
+        <button id="addCart" class="btn btn-primary" >Ajouter au panier</button>  
     {% endif %}
         
     </div>

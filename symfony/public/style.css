@@ -1,0 +1,18 @@
+nav ul li {
+    list-style: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+nav {
+    border-bottom: 2px solid #000;
+    padding: 20px;
+    margin: 0px;
+    background-color: #D4EAFF;
+}
+
+table tr:nth-child(2n) {background: #FFF6EA}
